@@ -1,16 +1,24 @@
 package com.joseneto.CRUDClients.dto;
 
 import com.joseneto.CRUDClients.entities.Client;
-import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long id;
+    @Size(min = 3, max = 80, message = "O nome precisa ter entre 3 e 80 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+    @NotBlank(message = "Campo requerido")
     private String cpf;
+    @Positive(message = "O valor deve ser positivo")
     private Double income;
+    @PastOrPresent(message = "A data deve estar no passado ou no presente")
     private LocalDate birthDate;
     private Integer children;
 
